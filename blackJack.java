@@ -163,6 +163,7 @@ public class blackJack
     else
     {
       System.out.println("Sorry to see you go. Please come again!");
+      System.exit(0);
     }
   }
 }
