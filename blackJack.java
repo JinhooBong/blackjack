@@ -4,7 +4,10 @@ import java.io.*;
 /*
   A very simple simulation of the card game black jack.
   User will get two random cards of certain value, and will be asked to be
-  "hit" or "stay". Depending on how close they get to 21 will decide who wins.
+  "hit" or "stay". 
+  If they ever hit a total card value of 21, the user will automatically win. 
+  Else, when they choose to "stay", they will compare their cards values against
+  the dealers, and whoever has a higher value will win. 
 */
 public class blackJack
 {
@@ -68,6 +71,7 @@ public class blackJack
           int newCardNum = dealCard();
           playersHand.add(newCardNum);
           int i = 0;
+          System.out.println("Here are your new cards: ");
           while(i < playersHand.size())
           {
             System.out.print("[" + playersHand.get(i) + "]");
