@@ -2,12 +2,14 @@ import java.util.*;
 import java.io.*;
 
 /*
-  A very simple simulation of the card game black jack.
+  A simulation of the card game black jack.
   User will get two random cards of certain value, and will be asked to be
-  "hit" or "stay". 
-  If they ever hit a total card value of 21, the user will automatically win. 
-  Else, when they choose to "stay", they will compare their cards values against
-  the dealers, and whoever has a higher value will win. 
+  "hit" or "stay". Depending on how close they get to 21 will decide who wins.
+
+  http://www.blackjack-direct.com/blackjack-rules.html
+  - The rules of black jack that I created the game to cater towards.
+  - Options I inlcuded: hit or stand.
+  - Excluded surrender, double down, and split options
 */
 public class blackJack
 {
@@ -64,7 +66,7 @@ public class blackJack
       String response = null;
       while(playerSum <= 21)
       {
-        System.out.println("Would you like to hit or stay?");
+        System.out.println("Would you like to hit or stand?");
         response = input.next();
         if(response.equals("hit") || response.equals("Hit"))
         {
@@ -85,11 +87,38 @@ public class blackJack
             System.exit(0);
           }
         }
-        else if(response.equals("stay") || response.equals("Stay"))
+        else if(response.equals("stand") || response.equals("Stand"))
         {
           System.out.println("I will reveal my cards.");
           // Reveal the face down dealers card
           System.out.println("[" + dealersHand.get(0) + "]" + " " + "[" + dealersHand.get(1) + "]");
+          if(dealerSum < 17)
+          {
+            System.out.println("I will hit until my hand totals at least 17");
+          }
+          // Dealer must hit until his hand total is at least 17 or busts
+          while(dealerSum <= 17)
+          {
+            int newDealCard = dealCard();
+            dealersHand.add(newDealCard);
+            dealerSum+=newDealCard;
+            for(int k = 0; k < dealersHand.size(); k++)
+            {
+              System.out.print("[" + dealersHand.get(k) + "] ");
+            }
+            System.out.println("");
+          }
+
+          if(dealerSum == 21)
+          {
+            System.out.println("Looks like I got Blackjack. You lost!");
+            System.exit(0);
+          }
+          else if(dealerSum > 21)
+          {
+            System.out.println("Darn! Looks like I bust. Congratulations you win!");
+            System.exit(0);
+          }
 
           if(dealerSum < playerSum)
           {
@@ -98,12 +127,12 @@ public class blackJack
           }
           else
           {
-            System.out.println("Looks like you lost! Please try again.");
+            System.out.println("Looks like you bust! Please try again.");
             System.exit(0);
           }
         }
       }
-      System.out.println("Looks like you lost! Please try again.");
+      System.out.println("Looks like you bust! Please try again.");
       System.exit(0);
 
       // Deals out two cards to system (one face up, one face down)
