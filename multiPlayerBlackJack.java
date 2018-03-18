@@ -12,7 +12,7 @@ import java.io.*;
   - Excluded surrender, double down, and split options.
 
 */
-public class multiPlayerBlackjack
+public class multiPlayerBlackJack
 {
   /* An ArrayList of Lists holding each players individual hands */
   public static List<List<Integer>> multiPlayersHands = new ArrayList<List<Integer>>();
