@@ -11,9 +11,9 @@ multiPlayerBlackJack.java allows for up to a 6 player simulation vs. the dealer.
 ### Work in Progress
 
 Still contains a couple bugs:
-	*-- Does not call "bust" when player is handed two cards of value > 21 initially. 
-	*-- Does not declare "BlackJack" when player is handed two cards of value == 21 initially. 
-	*-- Does not yet take into consideration when two players have the same highest value after dealer has bust or lost. 
+	* -- Does not call "bust" when player is handed two cards of value > 21 initially. 
+	* -- Does not declare "BlackJack" when player is handed two cards of value == 21 initially. 
+	* -- Does not yet take into consideration when two players have the same highest value after dealer has bust or lost. 
 
 Will be updating soon to fix these bugs. 
 Will be updating soon to implement the actual deck itself instead of simply using values. 
